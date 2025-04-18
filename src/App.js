@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Contact from './components/Contact';
+import Home from './components/Home';
+import About from './components/About';
+import NotFound from './components/NotFound';
+import { BrowserRouter as Router, Route, Routes,NavLink } from 'react-router-dom';
+import BlogPost from './components/BlogPost';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+
+        <ul className='navbar active'>
+            <li><NavLink to="/" style={({isActive})=>{return {color: isActive ? 'royalblue': ''}}}>Home</NavLink></li>
+            <li><NavLink to="/about" style={({isActive})=>{return {color: isActive ? 'royalblue': ''}}}>About</NavLink></li>
+            <li><NavLink to="/contact" style={({isActive})=>{return {color: isActive ? 'royalblue': ''}}}>Contact</NavLink></li>
+        </ul>
+    
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/*" element={<NotFound />} />
+        <Route path="/blogpost/:id" element={<BlogPost />} />
+
+      </Routes>
+    </Router>
   );
 }
 
