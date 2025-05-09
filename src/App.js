@@ -5,9 +5,14 @@ import About from './components/About';
 import NotFound from './components/NotFound';
 import { BrowserRouter as Router, Route, Routes,NavLink } from 'react-router-dom';
 import BlogPost from './components/BlogPost';
+import { AuthProvider } from './contexts/AuthContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
   return (
+
+    <ThemeProvider>
+    <AuthProvider>
     <Router>
 
         <ul className='navbar active'>
@@ -25,6 +30,8 @@ function App() {
 
       </Routes>
     </Router>
+    </AuthProvider>
+    </ThemeProvider>
   );
 }
 
